@@ -1,11 +1,30 @@
-<div class="m-5">
+<h4>Hola Bienvenido! <small>{{ usuario }}</small><button class="salir btn btn-outline-danger"(click)="salir()">Salir</button></h4>
 
-  <h1>Mi aplicación secreta</h1>
-  <hr>
+<navbar></navbar>
+<div class="row">
+    <div class="col-sm-6">
+	<div class="card  m-2" style="width: 18rem; " *ngFor="let item of items; let i = index">
+		
+		<app-carrito  [subTotal]="(cantItems.value) * (item.precio)" [canti]="(cantItems.value)" [item]="item"></app-carrito>
+		
+		<div class="card-footer">
+			<div class="row footer">
+				<div class="btn-verMas">
+					<a [routerLink]="['/articulo', i]" class="btn btn-outline-primary"(click)="verArticulo()">Ver mas</a>
+				</div>
+				<div class="btn-añadir">
+					<button (click)="cantidadObtener(cantItems.value)" type="button" class="btn btn-warning ">Añadir </button>
+				</div>
+				  <input class=" margInput form-control form-control-sm" [value]="valCantidad" type="number" min="1" #cantItems >
+			</div>
+		</div>
+	</div>
+	</div>
+  </div>
+  
 
-  <button class="btn btn-outline-danger"
-          (click)="salir()">
-    Salir
-  </button>
 
-</div>
+  
+
+
+

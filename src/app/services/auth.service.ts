@@ -34,6 +34,10 @@ export class AuthService {
   login( usuario: UsuarioModel ) {
 
     const authData = {
+      // se puede remplazar estas 2 lineas poniendo "...usuario" como esta abajo
+      //email: usuario.email,
+      //password: usuario.password
+
       ...usuario,
       returnSecureToken: true
     };

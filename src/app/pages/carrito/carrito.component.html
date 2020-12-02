@@ -1,0 +1,31 @@
+<div class="contanier">
+<div class="row">
+    <div class="col-sm-6">
+	<div class="card " style="width: 18rem;">
+		
+		<img [src]="item.img" class="card-img-top img-fluid" [alt]="item.nombre" >
+		<div class="card-body">
+		  <h5 class="card-title center">{{ item.nombre }}</h5>
+		  <hr>
+		  <div class="row marg-izq">
+			<p class="card-text bold">Precio:</p>
+			<p class="card-text marg-izq bolt"><small> $ {{ item.precio }}</small></p>
+		  </div>    
+  
+		  <div class="row marg-izq">
+			<p class="card-text bold">Unidades añadidas:</p>
+			<p class="card-text marg-izq bolt"><small> $ {{ canti }}</small></p>
+      </div>
+      
+      <div class="row marg-izq">
+        <p class="card-text bold">Sub Total:</p>
+        <p class="card-text marg-izq bolt"><small> $ {{ subTotal }}</small></p>
+        </div>
+
+		</div>
+
+
+	</div>
+	</div>
+  </div>
+</div>

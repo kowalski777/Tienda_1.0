@@ -1,0 +1,40 @@
+small{
+    font-size: 14px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.salir{
+    margin-top: 5px;
+    border: cadetblue;
+    background-color: rgb(41, 39, 39);
+    color: blanchedalmond;
+}
+/*---------------------------------------------------*/
+/* Fondo y IMG*/
+
+/* Botones y Margenes*/
+.btn-verMas{
+    margin-left: 15px;
+}
+.btn-añadir{
+    margin-left: 25px;
+}
+.row footer{
+display: inline-block;   
+}
+
+.margInput{
+    margin: 5px 0 0 5px;
+}
+
+
+/* Formularios y Inputs*/
+input{
+    width: 60px;
+    border-radius: 5px;
+    text-align: center;
+}
+.form-control{
+    display: inline-flex;
+}
