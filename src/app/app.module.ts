@@ -2,18 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+
 import { AppRoutingModule } from './app-routing.module';
+import { PagesModule } from './pages/pages.module';
+import { AppComponent } from './app.component';
+
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from "@angular/material/card";
+import { MatIconModule } from "@angular/material/icon";
+
 
 //Servicios
-import { ItemsService } from "./services/items.service";
+import { ItemsService } from './services/items.service';
 
-import { AppComponent } from './app.component';
+
+
+// Componentes
 import { RegistroComponent } from './pages/registro/registro.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
-import { NavbarComponent } from './components/shared/navbar/navbar.component';
-import { ArticuloComponent } from './pages/articulo/articulo.component';
-import { CarritoComponent } from './pages/carrito/carrito.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { MiniNavBarComponent } from './shared/mini-nav-bar/mini-nav-bar.component';
+import { CarritoComponent } from './pages/home/carrito/carrito.component';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -22,15 +38,24 @@ import { CarritoComponent } from './pages/carrito/carrito.component';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    ArticuloComponent,
-    CarritoComponent
+    MiniNavBarComponent,
+    CarritoComponent,
+    BuscadorComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PagesModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
+    
   ],
+  exports:[],
   providers: [
     ItemsService
   ],

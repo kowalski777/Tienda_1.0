@@ -1,0 +1,104 @@
+.all{
+    background-image: url('/assets/images/main-fondo.jpg');
+}
+h3{
+    height: 50px;
+}
+.cont-items{
+    min-height: 100em;
+    text-align: center; 
+    background-color: rgb(255, 253, 253);
+}
+.margen-top{
+   margin-top: 25px;
+} 
+.card{
+    margin: 5px;
+    padding: 0;
+    width: 16rem;
+    border-radius: 10px;
+    display: inline-block;
+    
+}
+.bold{
+    font-weight: bold;
+    color: black;
+}
+
+small{
+    font-size: 14px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.color{
+    font-weight: bold;
+    color: rgb(238, 117, 36);
+}
+/*---------------------------------------------------*/
+
+/* Botones y Margenes*/
+.btn-verMas{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 15px;
+}
+.btn-añadir{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 30px;
+}
+.row footer{
+display: inline-block;   
+}
+
+.margInput{
+    margin: 0px 0 0 2px;
+}
+
+
+/* Formularios y Inputs*/
+input{
+    width: 60px;
+    border-radius: 5px;
+    text-align: center;
+}
+.form-control{
+    display: inline-block;
+}
+
+/* ---------------------------------------------- */
+.titulo{
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    background-color: burlywood !important;
+    margin-right: 20%;
+    margin-left: 20%;
+  }
+
+.mrg{
+    margin-left: 0.5rem;
+    margin-bottom: 10px;
+}
+.params{
+    display: inline-block;
+    text-align: center;
+}
+.card-title{
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    background-color: rgb(217, 233, 243);
+}
+
+.color{
+    font-family: 'Caveat', cursive !important;
+    font-size: 19px !important;
+    font-family: 'Francois One', sans-serif;
+
+    color: rgb(30, 43, 228);
+}
+
+
+
+
+
+
+

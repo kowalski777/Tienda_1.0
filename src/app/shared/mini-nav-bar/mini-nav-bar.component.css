@@ -1,0 +1,57 @@
+.fondo{
+    background-color: rgb(235, 231, 231);
+    margin-top: 1rem !important;
+    border-radius: 2px;
+}
+
+
+
+.margen{
+    margin-top: 5px;
+    margin-left: 200px;
+    color: indigo;
+}
+
+.margen-top{
+    margin-top: 25px;
+ } 
+
+nav{
+    border-radius: 2px;
+}   
+small{
+    margin-left: 1rem;
+    color: rgb(29, 83, 7);
+    font-weight: bold;
+}
+.btn{
+    width: 100px;
+}
+.margen-izq{
+    margin-left: 40rem;
+}
+
+.card{
+    margin: 5px;
+    padding: 5px;
+    height: 3rem;
+    width: 30rem;
+    border-radius: 10px;
+    display: inline-block;
+}
+.material-icons{
+    font-size: 35px;
+    width: 35px;
+}
+h6{
+    margin-left: 1rem;  
+}
+
+button{
+    margin-left: 1rem;
+}
+
+.salir{
+    width: 30px;
+    border-radius: 50%;
+}

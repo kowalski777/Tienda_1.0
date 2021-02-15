@@ -1,30 +1,71 @@
-<h4>Hola Bienvenido! <small>{{ usuario }}</small><button class="salir btn btn-outline-danger"(click)="salir()">Salir</button></h4>
+<div class="all">
+	<div class="container">
+<!-- Mini-Nav-Bar -->
+		<nav class="navbar navbar-expand-md navbar-light bg-light">
+			<a class="navbar-brand"><img src="../../../assets/images/logo.png" alt="logo"></a>
+			<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link "[routerLink]="['/home']"><span class="material-icons">home</span></a>
+					<a class="nav-item nav-link"[routerLink]="['/carrito']">
+						<mat-icon [matBadge]="badgeCounter" matBadgeColor="warn" matBadgeSize="small">
+							<span class="material-icons">shopping_cart</span>
+						</mat-icon>
+					</a>
+				</div>
+				<div class="navbar-nav">
+				  <h6>Bienvenido: <small>{{ usuario }}</small><a class="salir btn btn-outline-danger btn-sm ml-2"(click)="salir()"><i class="fas fa-sign-out-alt"></i></a></h6>
+				</div>
+			</div>
+		</nav>	
+		<div class="row margen-top"></div>  <!--  Aqui coloco un espacio entre navbar y home-->
+<!-- Fin Mini-Nav-Bar -->
 
-<navbar></navbar>
-<div class="row">
-    <div class="col-sm-6">
-	<div class="card  m-2" style="width: 18rem; " *ngFor="let item of items; let i = index">
+	<app-navbar></app-navbar>
+	
+	
+
+	<div class="cont-items bg-light">
+		<h2 class="bg-light">Catalogo de Productos</h2>
+
+
+	  <div class="col-sm-12" >
+		<div class="card animated fadeInLeft" *ngFor="let item of items; let i = index">
+		<img [src]="item.img" class="card-img-top img-fluid" [alt]="item.nombre" >
+		<div class="card-body">
+		<h5 class="card-title ">{{ item.nombre }}</h5>
+		<hr>
+		<div class="row mrg">
+			<div class="params col bold">Precio: </div><div class="color col">$ {{ item.precio }}</div>
+		</div>    
+		<div class="row mrg ">
+			<div class="params col bold">Disponibles: </div><div class="color col">{{ item.stock }} uni.</div>
+		</div>
+		<div class="row mrg">
+			<div class="col params bold">Añadidas:</div><div class="col color">{{ item.cantidad }} uni.</div>
+		</div>
+		<div class="row mrg">
+			<div class="params col bold">Subtotal: </div><div class="col color">$ {{ item.subTotal }}</div>
+		</div>
+		</div>
 		
-		<app-carrito  [subTotal]="(cantItems.value) * (item.precio)" [canti]="(cantItems.value)" [item]="item"></app-carrito>
-		
-		<div class="card-footer">
+		<div class="card-footer" >
 			<div class="row footer">
 				<div class="btn-verMas">
-					<a [routerLink]="['/articulo', i]" class="btn btn-outline-primary"(click)="verArticulo()">Ver mas</a>
+					<a [routerLink]="['/articulo', i]" class="btn btn-outline-primary btn-sm"(click)="verArticulo()">Ver mas</a>
 				</div>
 				<div class="btn-añadir">
-					<button (click)="cantidadObtener(cantItems.value)" type="button" class="btn btn-warning ">Añadir </button>
+					<button (click)="cantidadObtener(cantItems.value, i)"   type="button" class="btn btn-warning btn-sm">Añadir </button>
 				</div>
-				  <input class=" margInput form-control form-control-sm" [value]="valCantidad" type="number" min="1" #cantItems >
+				<input class=" margInput form-control form-control-sm" required type="number" min="1"  max="{{ item.stock - cantItems.value}}" #cantItems >
 			</div>
 		</div>
+		</div>
+	  </div>
 	</div>
 	</div>
-  </div>
-  
 
-
-  
-
-
-
+	
+</div>

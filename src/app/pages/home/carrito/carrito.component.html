@@ -1,0 +1,63 @@
+<div class="all">
+  <app-mini-nav-bar></app-mini-nav-bar>
+	<div class="container">
+    
+    <app-navbar></app-navbar>
+
+	<div class="cont-items bg-light">
+
+    <div class="row bg-light ">
+      <div class="container cont-items">
+        <h2 class="titulo bg-light offset-md-5">Tu Carrito de compras</h2>
+
+        
+        <div class="col-sm-8 col-lg-8 izq mt-4 animated fadeIn">
+          <div class="row tr pb-1">
+            <div class="col th border border-dark bold"># Compra</div>
+            <div class="col th border border-dark bold">Img</div>
+            <div class="col th border border-dark bold">Nombre</div>
+            <div class="col th border border-dark bold">Precio</div>
+            <div class="col th border border-dark bold">Cantidad</div>
+            <div class="col th border border-dark bold">Subtotal</div>
+          </div>
+  
+          <div class="row tr" *ngFor="let item of items; let i = index">
+            <div class="col td border border-dark">{{ i }}</div>
+            <div class="col img border border-dark">
+              <img
+                [src]="item.img"
+                class="card-img-top img-fluid"
+                [alt]="item.nombre"
+              />
+            </div>
+            <div class="col td border border-dark">{{ item.nombre }}</div>
+            <div class="col td border border-dark">{{ item.precio }}</div>
+            <div class="col td border border-dark">{{ item.cantidad }}</div>
+            <div class="col td border border-dark">{{ item.subTotal }}</div>
+          </div>
+          <div class="pb-5 bg-light"> </div>
+      </div>
+  
+        <div class="col-sm-4 col-lg-4 mt-3 pb-5  der">
+          <div class=" border border-info">
+              <div class="uno"></div>
+              <div class="card-body dos"><h3>Total de Compra:</h3></div>
+              <div> </div>
+              <h2 class="card-title center bold">{{ total }} $</h2>
+              
+              <button class="btn btn-warning btn-sm" type="text" (click)="btnCancelar()">Cancelar</button>  
+              <button class="btn btn-success btn-sm" type="text" (click)="restarDelStock()">Pagar</button>
+              <div class=""> </div>
+              <div class="tres"></div>
+              
+        </div>
+      </div>
+      </div>
+    </div>
+
+
+  </div>
+  
+
+	</div>
+</div>

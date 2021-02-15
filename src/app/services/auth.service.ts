@@ -4,120 +4,103 @@ import { UsuarioModel } from '../models/usuario.model';
 
 import { map } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
+  private url = 'https://identitytoolkit.googleapis.com/v1/accounts';
   private apikey = 'AIzaSyDAkR_sHbtnya0tlOFyejJqWGPo_lj6F2s';
 
   userToken: string;
 
-  // Crear nuevo usuario
-  // https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=[API_KEY]
+  //Crear nuevo Usuario:
+  //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
+
+  //Login:
+  //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
 
-  // Login
-  // https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=[API_KEY]
-
-
-  constructor( private http: HttpClient ) {
+  constructor( private http: HttpClient) { 
     this.leerToken();
   }
 
-
-  logout() {
+  logout(){
     localStorage.removeItem('token');
+
   }
 
-  login( usuario: UsuarioModel ) {
+  login( usuario: UsuarioModel ){
+    const authData ={
+     ...usuario,
+     returnsecureToken: true
+    };
+    return this.http.post(
+      `${ this.url }:signInWithPassword?key=${this.apikey}`,
+      //`${ this.url }/signInWithPassword?key=${ this.apikey }`,
+      authData 
+  ).pipe(map( resp =>{
+    //console.log('Entro en el mapa del RXJS');
+    this.guardarToken(resp['idToken']);
+    return resp;
+  })
+  );
+}
 
+  nuevoUsuario( usuario: UsuarioModel ){
     const authData = {
-      // se puede remplazar estas 2 lineas poniendo "...usuario" como esta abajo
-      //email: usuario.email,
-      //password: usuario.password
-
-      ...usuario,
+      email: usuario.email,
+      password: usuario.password,
       returnSecureToken: true
     };
-
     return this.http.post(
-      `${ this.url }/verifyPassword?key=${ this.apikey }`,
-      authData
-    ).pipe(
-      map( resp => {
-        this.guardarToken( resp['idToken'] );
-        return resp;
-      })
+      `${ this.url }:signUp?key=${this.apikey}`,
+      //`${ this.url }/signUp?key=${ this.apikey }`,
+      authData 
+    ).pipe(map( resp =>{
+      //console.log('Entro en el mapa del RXJS');
+      this.guardarToken(resp['idToken']);
+      return resp;
+    })
     );
-
   }
 
-  nuevoUsuario( usuario: UsuarioModel ) {
-
-    const authData = {
-      ...usuario,
-      returnSecureToken: true
-    };
-
-    return this.http.post(
-      `${ this.url }/signupNewUser?key=${ this.apikey }`,
-      authData
-    ).pipe(
-      map( resp => {
-        this.guardarToken( resp['idToken'] );
-        return resp;
-      })
-    );
-
-  }
-
-
-  private guardarToken( idToken: string ) {
-
+  private guardarToken(idToken: string){
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
 
     let hoy = new Date();
-    hoy.setSeconds( 3600 );
+    hoy.setSeconds(3600);
 
     localStorage.setItem('expira', hoy.getTime().toString() );
-
-
   }
-
-  leerToken() {
-
-    if ( localStorage.getItem('token') ) {
+  leerToken(){
+    if (localStorage.getItem('token')){
       this.userToken = localStorage.getItem('token');
-    } else {
-      this.userToken = '';
+    } else{
+      this.userToken ='';
     }
-
     return this.userToken;
-
   }
-
 
   estaAutenticado(): boolean {
-
-    if ( this.userToken.length < 2 ) {
+    //return this.userToken.length > 2;
+    if ( this.userToken.length <2 ){
       return false;
     }
 
-    const expira = Number(localStorage.getItem('expira'));
+    const expira = Number(localStorage.getItem('expira')); 
     const expiraDate = new Date();
     expiraDate.setTime(expira);
 
-    if ( expiraDate > new Date() ) {
+    if ( expiraDate > new Date()){
       return true;
-    } else {
-      return false;
+    }else{
+      return false;  
     }
-
-
+    
   }
+
 
 
 }

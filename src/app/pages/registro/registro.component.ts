@@ -13,49 +13,54 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-
   usuario: UsuarioModel;
   recordarme = false;
 
   constructor( private auth: AuthService,
                private router: Router ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.usuario = new UsuarioModel();
+    //this.usuario.email="email@gmail.com";
+    
   }
 
-  onSubmit( form: NgForm ) {
-
-    if ( form.invalid ) { return; }
-
+  onSubmit(form:NgForm){
+    if ( form.invalid ){
+      return;
+    }
+    
     Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      icon: 'info',
       allowOutsideClick: false,
-      type: 'info',
-      text: 'Espere por favor...'
+      showConfirmButton: true
     });
     Swal.showLoading();
 
     this.auth.nuevoUsuario( this.usuario )
-      .subscribe( resp => {
-
+      .subscribe( resp =>{
         console.log(resp);
         Swal.close();
-
-        if ( this.recordarme ) {
-          localStorage.setItem('email', this.usuario.email);
-        }
+        
+        if( this.recordarme ){
+         localStorage.setItem('email', this.usuario.email);
+       }
 
         this.router.navigateByUrl('/home');
-
-      }, (err) => {
-        console.log(err.error.error.message);
+      }, (err)=>{
+        console.log("ERROR: " +err.error.error.message);
         Swal.fire({
-          type: 'error',
-          title: 'Error al autenticar',
-          text: err.error.error.message
+          title: 'Error al Guardar',
+          text: err.error.error.message,
+          icon: 'error',
         });
       });
+    
+    //console.log('formulario enviado');
+    //console.log(this.usuario);
+    //console.log( form) ;
   }
-
 
 }

@@ -21,50 +21,47 @@ export class LoginComponent implements OnInit {
                private router: Router ) { }
 
   ngOnInit() {
-
-    if ( localStorage.getItem('email') ) {
+    if( localStorage.getItem('email')){
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
 
   }
 
+  login( form: NgForm ){
 
-  login( form: NgForm ) {
-
-    if (  form.invalid ) { return; }
+    if ( form.invalid ){return;}
 
     Swal.fire({
+      title: 'Espere',
+      text: 'Guardando información',
+      icon: 'info',
       allowOutsideClick: false,
-      type: 'info',
-      text: 'Espere por favor...'
+      showConfirmButton: true
     });
     Swal.showLoading();
 
-
     this.auth.login( this.usuario )
-      .subscribe( resp => {
+      .subscribe( resp =>{
+       console.log(resp);
+       Swal.close();
 
-        console.log(resp);
-        Swal.close();
+       if( this.recordarme ){
+         localStorage.setItem('email', this.usuario.email);
+       }
 
-        if ( this.recordarme ) {
-          localStorage.setItem('email', this.usuario.email);
-        }
-
-
-        this.router.navigateByUrl('/home');
-
-      }, (err) => {
-
-        console.log(err.error.error.message);
-        Swal.fire({
-          type: 'error',
-          title: 'Error al autenticar',
-          text: err.error.error.message
-        });
+       this.router.navigateByUrl('/home');
+    }, (err) =>{
+      console.log(err.error.error.message);
+      Swal.fire({
+        title: 'Error al autenticar',
+        text: err.error.error.message,
+        icon: 'error',
       });
-
+    });
+    //console.log("imprimir si esta validado");
+    //console.log(this.usuario);
+    //console.log(form);
   }
 
 }

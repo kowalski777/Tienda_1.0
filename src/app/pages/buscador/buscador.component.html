@@ -1,0 +1,62 @@
+<div class="all">
+<div class="container">
+  <app-mini-nav-bar></app-mini-nav-bar>
+
+  <div class="row margen-top"></div>
+  <app-navbar></app-navbar>
+
+  <div class="cont-items" >
+    <h2 class="titulo bg-light offset-md-5">Menu de Busqueda</h2>
+
+    <div class="row animated fadeInLeft" *ngIf="items.length == 0">
+      <div class="col-md-12" style="text-align: center; color: blue; font-weight:bold;">
+        <div class="alert alert-info" role="alert"> No Existen resultados con el término: <h4 class="color">{{ termino }}
+          </h4>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-12">
+      <div class="card animated fadeInLeft" *ngFor="let item of items; let i = index">
+        <img [src]="item.img" class="card-img-top img-fluid" [alt]="item.nombre">
+        <div class="card-body">
+          <h5 class="card-title ">{{ item.nombre }}</h5>
+          <hr>
+          <div class="row mrg">
+            <div class="params col bold">Precio: </div><div class="color col">$ {{ item.precio }}</div>
+          </div>    
+          <div class="row mrg ">
+            <div class="params col bold">Disponibles: </div><div class="color col">{{ item.stock }} uni.</div>
+          </div>
+          <div class="row mrg">
+            <div class="col params bold">Añadidas:</div><div class="col color">{{ item.cantidad }} uni.</div>
+          </div>
+          <div class="row mrg">
+            <div class="params col bold">Subtotal: </div><div class="col color">$ {{ item.subTotal }}</div>
+          </div>
+        </div>
+
+        <div class="card-footer" >
+          <div class="row footer">
+            <div class="btn-verMas">
+              <a [routerLink]="['/articulo', item.idx]" class="btn btn-outline-primary btn-sm"(click)="verArticulo()">Ver mas</a>
+            </div>
+            <div class="btn-añadir">
+              <button (click)="cantidadObtener(cantItems.value, item.idx)"  type="button" class="btn btn-warning btn-sm">Añadir </button>
+            </div>
+            <input class=" margInput form-control form-control-sm" type="number" min="1" max="{{ item.stock - cantItems.value}}" #cantItems >
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+  
+
+      
+    

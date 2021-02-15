@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { ItemsService, Item } from "../../services/items.service";
-import { ActivatedRoute ,Router } from '@angular/router';
-
+import { ItemsService, Item, Newarr } from "../../services/items.service";
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-home',
@@ -11,50 +11,89 @@ import { ActivatedRoute ,Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+
   items:Item[]=[];
-  usuario: any ={};
-  canti: number;
-  
   item: any ={};
-
-  constructor( private auth: AuthService,
-               private _itemsService: ItemsService,
-               private _router: Router,
-               private _activatedRoute: ActivatedRoute) { 
-
-                
-
-      
-      this._activatedRoute.params.subscribe(params =>{
-      this.item = this._itemsService.getItem( params['id'] );
-      });
-               }
-
-
-  ngOnInit() {
-    
-    this.usuario = localStorage.getItem('email'); // obtengo el usuario para mostrar quien esta logueado
-    this.items= this._itemsService.getItems();    
-    console.log(this.canti);
-    this.cantidadObtener;
-
-
-  }
-
-  cantidadObtener(cant: number){
-    this.canti = cant;
-
-    for( let itm of this.items){
-      cant  = itm.cantidad;
-
-      return cant;
-    }
-  }
-
+  itemPrueba: Item;
   
+  // --- Boton Añadir ---
+  nArr:Newarr[]=[];
+  
+  usuario: any ={};
+  
+  badgeCounter: number;
+  aux: number;
+  
+  constructor( private auth: AuthService,
+               public _itemsService: ItemsService,
+               private _router: Router,
+               private _activatedRoute: ActivatedRoute,
+               private http:HttpClient) { 
+
+
+
+                    this._activatedRoute.params.subscribe(params =>{
+                    this.item = this._itemsService.getItem( params['id'] );
+                    });
+                }
+  
+  
+  ngOnInit() {
+
+    this.badgeCounter = this._itemsService.getNewarr().length; //cantidad de articulos añadidos al carrito
+    this.items = this._itemsService.getItems();
+    this.nArr = this._itemsService.getNewarr();
+    this.usuario = localStorage.getItem('email'); // obtengo el usuario para mostrar quien esta logueado
+   }
+
+  cantidadObtener(cant: any, idx: any){
+    if(cant==0){
+      alert("La cantidad no puede ser igual a 0")
+      return
+    }
+
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      this.aux = cant;
+      
+      if(cant > e.stock){
+        alert("No se puede comprar esta cantidad")
+        return
+      }
+
+      if(cant <= e.stock){
+        if(e.idx == idx && e.cantidad == 0) {
+          e.nombre = e.nombre;
+          e.precio = e.precio;
+          e.img = e.img;
+          e.idx = idx;
+          e.cantidad = cant;
+          e.subTotal = e.cantidad * e.precio;
+  
+          if(this.nArr[i]){
+            for (let x = 0; x < this.nArr.length; x++) {
+              const el = this.nArr[x];
+             if(el.idx == e.idx){
+               e.stock += -e.cantidad;
+             }         
+                       
+            }
+          }else{
+            console.log("estoy aqui");
+            e.stock += -e.cantidad;
+          }
+  
+          this._itemsService.setNewArr(e);
+          
+          this.badgeCounter++;
+
+       }
+      }
+    }
+    console.log(this.items);
+  }
 
   verArticulo(index: number) {
-  	//console.log( idx );
     this._router.navigate( ['/articulo',index] );
   }
 
@@ -62,5 +101,7 @@ export class HomeComponent implements OnInit {
     this.auth.logout();
     this._router.navigateByUrl('/login');
   }
-
+  
 }
+
+

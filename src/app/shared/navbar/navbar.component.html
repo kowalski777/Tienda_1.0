@@ -1,0 +1,14 @@
+<div class="p-4  bg-light">
+  <div class="container">
+  <div class="row">  
+    <form class="form-inline">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Buscar artículo" (keyup.enter)="buscarItem(buscarTexto.value)" #buscarTexto/>
+        </div>
+        <div class="input-group-append">
+          <button (click)="buscarItem(buscarTexto.value)" class="btn btn-outline-primary my-2 my-sm-0 " type="button"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+  </div>
+  </div>
+</div>

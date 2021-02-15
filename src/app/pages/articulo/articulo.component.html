@@ -1,41 +1,30 @@
-<h4>Articulo</h4>
 <div class="row">
     <div class="col-sm-6">
-
-		<!--<app-carrito></app-carrito>-->
-			
-		<div class="card  m-2" style="width: 18rem;">
-			<img [src]="item.img" class="card-img-top img-fluid" [alt]="item.nombre" >
-			<div class="card-body">
-			  <h5 class="card-title center">{{ item.nombre }}</h5>
-			  <hr>
-			  <div class="row marg-izq">
-				<p class="card-text bold">Precio:</p>
-				<p class="card-text marg-izq bolt"><small> $ {{ item.precio }}</small></p>
-			  </div>    
-	  
-			  <div class="row marg-izq">
-				<p class="card-text bold">Unidades disponibles:</p>
-				<p class="marg-izq bolt">[ {{ item.stock }} ]</p>
-			  </div>
-			  <div class="row marg-izq">
-				<p class="card-text bold">Unidades añadidas:</p>
-				<p class="card-text marg-izq bolt"><small> $ {{ canti }}</small></p>
-			  </div>
-			  <div class="row marg-izq">
-				<p class="card-text bold">Sub Total:</p>
-				<p class="card-text marg-izq bolt"><small> $ {{ subTotal }}</small></p>
-			  </div>
+		<div class="card  m-2" style="width: 30rem;">
+			<div class="bg-info"><h2 class="titulo">Detalles: {{ item.nombre }} </h2></div>
+		<img [src]="item.img" class="card-img-top img-fluid" [alt]="item.nombre" >
+		<div class="card-body">
+			<div><h5 class="card-title">{{ item.nombre }}</h5></div>
+			<hr>
+			<div class="row mrg">
+				<div class="params col bold">Precio: </div><div class="color col">$ {{ item.precio }}</div>
+			</div>    
+			<div class="row mrg ">
+				<div class="params col bold">Disponibles: </div><div class="color col">{{ item.stock }} uni.</div>
 			</div>
-			
-			<div class="card-footer">
-				<button class="btn btn-primary btn-block" [routerLink]="['/home']">Regresar</button>
-				<div class="row footer">
-				 </div>
+			<div class="row mrg">
+				<div class="col params bold">Añadidas:</div><div class="col color">{{ item.cantidad }} uni.</div>
+			</div>
+			<div class="row mrg">
+				<div class="params col bold">Subtotal: </div><div class="col color">$ {{ item.subTotal }}</div>
 			</div>
 		</div>
 		
-
-
+		<div class="card-footer">
+			<a (click)="regresar()"class="btn btn-primary btn-block">Regresar</a>
+			<div class="row footer">
+ 			</div>
+		</div>
+	</div>
 	</div>
   </div>

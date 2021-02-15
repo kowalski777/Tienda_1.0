@@ -1,0 +1,119 @@
+.all{
+  background-image: url('/assets/images/main-fondo.jpg');
+}
+.cont-items{
+  padding-right: 20px;
+  padding-left: 20px;
+  min-height: 100em;  
+  text-align: center; 
+  background-color: rgb(255, 253, 253);
+
+}
+.titulo{
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+  background-color: burlywood !important;
+  margin-right: 20%;
+  margin-left: 20%;
+}
+
+.izq {
+  border-radius: 10px;
+
+  float: left;
+}
+.der {
+  float: right;
+}
+
+.th,
+.tr,
+.td {
+  text-align: center;
+}
+
+.th {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  background-color: rgb(217, 233, 243);
+}
+
+.td {
+  
+  background-color: rgb(243, 242, 227);
+  color: blue;
+  font-family: 'Satisfy', cursive;
+  font-size: 20px;
+  display: inline;
+  vertical-align: middle;
+  padding-top: 40px;
+  height: 100px;
+}
+
+.img {
+  background-color: rgb(255, 255, 255);
+  padding-top: 3px;
+  /* border: solid 1px black; */
+  height: 100px;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.margen{
+  margin-top: 5px;
+  margin-left: 200px;
+  color: indigo;
+}
+.margen-izq{
+  margin-left: 40rem;
+}
+
+/*------------------------------------------------*/
+
+.uno, .tres{
+  background-color: blanchedalmond;
+  height: 3rem;
+}
+.dos {
+  background-color: aquamarine;
+  height: 4rem;
+}
+h3{
+  font-family: 'Cinzel', serif;
+  font-size: 24px;
+}
+
+.bold {
+  font-weight: bold;
+  color: black;
+}
+
+
+
+/* ----------------------------------------------- */
+
+.card{
+  margin: 5px;
+  padding: 5px;
+  height: 3rem;
+  width: 30rem;
+  border-radius: 10px;
+  display: inline-block;
+}
+.material-icons{
+  font-size: 35px;
+  width: 35px;
+}
+
+
+button{
+  margin-left: 1rem;
+  width: 100px;
+}
+
+.salir{
+  width: 30px;
+  border-radius: 50%;
+}

@@ -1,0 +1,21 @@
+<div class="all">
+  <div class="container">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a class="navbar-brand"><img src="../../../assets/images/logo.png" alt="logo"></a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav">
+        <a class="nav-item nav-link "[routerLink]="['/home']"><span class="material-icons">home</span></a>
+        <a class="nav-item  nav-link"[routerLink]="['/carrito']"><span class="material-icons">shopping_cart</span></a>
+        </div>
+        <div class="navbar-nav">
+          <h6>Bienvenido: <small>{{ usuario }}</small><a class="salir btn btn-outline-danger btn-sm ml-2"(click)="salir()"><i class="fas fa-sign-out-alt"></i></a></h6>
+        </div>
+    </div>
+</nav>
+<div class="row margen-top"></div>  <!--  Aqui coloco un espacio entre navbar y home-->
+</div>
+</div>
